@@ -1,6 +1,6 @@
 
 
-main_manu = \
+main_menu = \
 'Выберите пункт меню:\n\
 1. Список всех дел\n\
 2. Список незавершенных дел\n\
@@ -12,7 +12,7 @@ main_manu = \
 
 
 def start_page():
-    print (main_manu)
+    print (main_menu)
     command = input('message: ')
     return command
 
