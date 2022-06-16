@@ -11,7 +11,7 @@ def get_all_deals():  # Возвращает весь список дел из �
         data = [data[i] for i in range(1, len(data))]
     return data
 
-def get_deal(deal_id_get): # Возвращает одно дело по его deal_id
+def get_one_deal(deal_id_get): # Возвращает одно дело по его deal_id
     with open(path_to_db, 'r', encoding='UTF-8') as file: # Читаем данные из базы. 
         data = json.load(file)
         for i in range(1, len(data)): 
@@ -67,9 +67,9 @@ print('***change_deal(test_deal_edit)***')
 test_deal_edit = {'deal_id': 6, 'deal': 'Найти клад', 'deadline': '30.06.2022', 'status': 'в работе'}
 print(change_deal(test_deal_edit))
 
-print('***get_deal(test_deal_id_get)***')
+print('***get_one_deal(test_deal_id_get)***')
 test_deal_id_get = 3
-print(get_deal(test_deal_id_get))
+print(get_one_deal(test_deal_id_get))
 
 
 def clear_db(): # Очистка базы данных
