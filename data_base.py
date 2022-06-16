@@ -11,6 +11,14 @@ def get_all_deals():  # Возвращает весь список дел из �
         data = [data[i] for i in range(1, len(data))]
     return data
 
+def get_deal(deal_id_get): # Возвращает одно дело по его deal_id
+    with open(path_to_db, 'r', encoding='UTF-8') as file: # Читаем данные из базы. 
+        data = json.load(file)
+        for i in range(1, len(data)): 
+            if deal_id_get == data[i]['deal_id']:
+                one_deal_get = data[i]
+    return one_deal_get
+
 def add_deal(deal_new):  # Добавление нового дела в БД {'deal_id': '', 'deal': 'Найти клад', 'deadline': '', 'status': 'новое'}
     with open(path_to_db, 'r', encoding='UTF-8') as file: # Читаем данные из базы. 
         data = json.load(file)
@@ -21,14 +29,18 @@ def add_deal(deal_new):  # Добавление нового дела в БД {'
         json.dump(data, file)
     return data
 
-def change_deal(deal_edit):  # Изменение дела в БД {'deal_id': 6, 'deal': 'Найти клад', 'deadline': '30.06.2022', 'status': 'в работе'}
+def change_deal(deal_edit):  # Изменение дела с deal_id = 6 в БД на {'deal_id': 6, 'deal': 'Найти клад', 'deadline': '30.06.2022', 'status': 'в работе'}
     with open(path_to_db, 'r', encoding='UTF-8') as file: # Читаем данные из базы. 
         data = json.load(file)
 
-
-        #data = json.load(path_to_db)
-        #data = [data[i] for i in range(1, len(data))]
+        for i in range(1, len(data)): # Для изменения дела c deal_id = 6, находим в БД словарь с deal_id = 6 и перезаписываем его.
+            if deal_edit['deal_id'] == data[i]['deal_id']:
+                data[i] = deal_edit
+        
+    with open(path_to_db, 'w', encoding='UTF-8') as file: # Записываем в базу данных обновленный список словарей
+        json.dump(data, file)    
     return data
+
 
 
 
@@ -51,8 +63,14 @@ print('***add_deal(test_deal_add)***')
 test_deal_add = {'deal_id': '', 'deal': 'Найти клад', 'deadline': '', 'status': 'новое'}
 print(add_deal(test_deal_add))
 
-
+print('***change_deal(test_deal_edit)***')
 test_deal_edit = {'deal_id': 6, 'deal': 'Найти клад', 'deadline': '30.06.2022', 'status': 'в работе'}
+print(change_deal(test_deal_edit))
+
+print('***get_deal(test_deal_id_get)***')
+test_deal_id_get = 3
+print(get_deal(test_deal_id_get))
+
 
 def clear_db(): # Очистка базы данных
     first_element = [{'id_counter': 0}, ]
