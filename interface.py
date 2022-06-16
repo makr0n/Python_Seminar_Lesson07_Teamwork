@@ -1,4 +1,5 @@
 import time
+import os
 
 main_menu = \
     'Выберите пункт меню:\n\
@@ -21,10 +22,23 @@ def start_page():  # Starting page, choose number
 
 
 def show_deals(data):  # 1 in menu
-    print('\033[4mСписок всех дел:\033[0m')
-    print(data)
-    print(50 * "=")
-    start_page()
+    # os.system('cls')
+    if data != []:
+        print('\033[4mСписок всех дел:\033[0m')
+        for item in range(len(data)):
+            a = data[item]['deal_id']
+            b = data[item]['deal']
+            c = data[item]['deadline']
+            d = data[item]['status']
+            if d != 0:
+                d = 'Выполнено'
+                print(f'{a}) {b}. {d}')
+            else:
+                d = 'Не выполнено'
+                print(f'{a}) {b}. Выполнить до {c}.')
+        print(50 * "=")
+    else:
+        print('\033[33mСписок дел пуст\033[0m')
 
 
 def unfinished_deals():
@@ -44,7 +58,7 @@ def add_deal():
     print('\033[3mДобавление дела\033[0m')
     print(50 * "=")
     deal_name = input('Что необходимо сделать: ')  # plain text
-    deal_deadline = input('Сроки выполнения: ')  # DD-MM-YYYY
+    deal_deadline = input('Укажите сроки выполнения в формате ДД-ММ-ГГ: ')  # DD-MM-YY
     deal = deal_name + deal_deadline
     return deal
 
@@ -58,7 +72,7 @@ def change_deal():
     return command, deal_id
 
 
-def bye_mess(): #6 in menu
+def bye_mess():  # 6 in menu
     print('Работа завершена!')
 
 
