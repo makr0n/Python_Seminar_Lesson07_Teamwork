@@ -24,8 +24,8 @@ def run():
             
             case 4: # Добавить дело
                 user_data = interface.add_deal() # user_data - введенные юзером данные в удобном формате. Здесь я их преобразую в стандартный наш словарь и передам в data_base и logger
-                data_base.change(user_data)
-                logger.add(user_data, action = 'add') ## прошу написать функцию add в logger, которая принимает стандартный наш словарь и в данном случае признак add (добавить)
+                data_base.add_deal(user_data)
+                logger.logger(user_data, 'add') ## прошу написать функцию add в logger, которая принимает стандартный наш словарь и в данном случае признак add (добавить)
             
             case 5: # Изменить дело
                 data = data_base.get_undone_deals()
@@ -46,7 +46,7 @@ def run():
 
 
 def change_action(user_answer: dict):
-    match user_answer[user_choise]:
+    match user_answer['user_choise']:
         case 1: # завершить дело
             return
         

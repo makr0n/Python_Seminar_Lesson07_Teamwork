@@ -2,7 +2,7 @@
 
 import json
 
-path_to_db = 'test_db.json' #'db.json'
+path_to_db = 'db.json'
 
 
 def get_all_deals():  # Возвращает весь список дел из файла db.json
@@ -42,43 +42,43 @@ def change_deal(deal_edit):  # Изменение дела с deal_id = 6 в Б�
     return data
 
 
-
-
-#Тестирование БД на тестовых данных test_data
-test_data = [{"id_counter": 5}, 
-        {'deal_id': 1, 'deal': 'Помыть кота', 'deadline': '12.05.2022', 'status': 'выполнено'}, 
-        {'deal_id': 2, 'deal': 'Постирать', 'deadline': '12.07.2022', 'status': 'просрочено'},
-        {'deal_id': 3, 'deal': 'Лохматить бабушку', 'deadline': '20.07.2022', 'status': 'в работе'},
-        {'deal_id': 4, 'deal': 'Написать To-do list', 'deadline': '16.07.2022', 'status': 'не выполнено'},
-        {'deal_id': 5, 'deal': 'Съесть кактус', 'deadline': '', 'status': 'делать не буду'}]
-
-with open ('test_db.json', 'w') as test_file:
-    json.dump(test_data,test_file)
-
-
-print('***get_all_deals()***')
-print(get_all_deals())
-
-print('***add_deal(test_deal_add)***')
-test_deal_add = {'deal_id': '', 'deal': 'Найти клад', 'deadline': '', 'status': 'новое'}
-print(add_deal(test_deal_add))
-
-print('***change_deal(test_deal_edit)***')
-test_deal_edit = {'deal_id': 6, 'deal': 'Найти клад', 'deadline': '30.06.2022', 'status': 'в работе'}
-print(change_deal(test_deal_edit))
-
-print('***get_one_deal(test_deal_id_get)***')
-test_deal_id_get = 3
-print(get_one_deal(test_deal_id_get))
-
-
 def clear_db(): # Очистка базы данных
     first_element = [{'id_counter': 0}, ]
     with open(path_to_db, 'w') as file:
         json.dump(first_element, file)
 
-#if __name__ == "__main__":
+if __name__ == "__main__":
 #    clear_db()
+
+#Тестирование БД на тестовых данных test_data
+    path_to_db = 'test_db.json'
+    test_data = [{"id_counter": 5}, 
+            {'deal_id': 1, 'deal': 'Помыть кота', 'deadline': '12.05.2022', 'status': 'выполнено'}, 
+            {'deal_id': 2, 'deal': 'Постирать', 'deadline': '12.07.2022', 'status': 'просрочено'},
+            {'deal_id': 3, 'deal': 'Лохматить бабушку', 'deadline': '20.07.2022', 'status': 'в работе'},
+            {'deal_id': 4, 'deal': 'Написать To-do list', 'deadline': '16.07.2022', 'status': 'не выполнено'},
+            {'deal_id': 5, 'deal': 'Съесть кактус', 'deadline': '', 'status': 'делать не буду'}]
+
+    with open ('test_db.json', 'w') as test_file:
+        json.dump(test_data,test_file)
+
+
+    print('***get_all_deals()***')
+    print(get_all_deals())
+
+    print('***add_deal(test_deal_add)***')
+    test_deal_add = {'deal_id': '', 'deal': 'Найти клад', 'deadline': '', 'status': 'новое'}
+    print(add_deal(test_deal_add))
+
+    print('***change_deal(test_deal_edit)***')
+    test_deal_edit = {'deal_id': 6, 'deal': 'Найти клад', 'deadline': '29.06.2022', 'status': 'в работе'}
+    print(change_deal(test_deal_edit))
+
+    print('***get_one_deal(test_deal_id_get)***')
+    test_deal_id_get = 3
+    print(get_one_deal(test_deal_id_get))
+
+
 
 # def change_deal(deal):  # Изменение
 #     with open(path_to_db, 'r', encoding='UTF-8') as file:
