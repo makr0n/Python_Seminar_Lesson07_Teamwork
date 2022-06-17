@@ -1,9 +1,9 @@
 # Процедуры работы с базой данных
 
 import json
+from queue import Empty
 
 path_to_db = 'db.json'
-
 
 def get_all_deals():  # Возвращает весь список дел из файла db.json
     with open(path_to_db, 'r', encoding='UTF-8') as file:
@@ -29,7 +29,7 @@ def add_deal(deal_new):  # Добавление нового дела в БД {'
         json.dump(data, file)
     return data
 
-def change_deal(deal_edit):  # Изменение дела с deal_id = 6 в БД на {'deal_id': 6, 'deal': 'Найти клад', 'deadline': '30.06.2022', 'status': 'в работе'}
+def change_deal(deal_edit):  # Изменение дела 
     with open(path_to_db, 'r', encoding='UTF-8') as file: # Читаем данные из базы. 
         data = json.load(file)
 
@@ -41,6 +41,21 @@ def change_deal(deal_edit):  # Изменение дела с deal_id = 6 в Б�
         json.dump(data, file)    
     return data
 
+def delete_deal(deal_id_delete): # Удаление дела в БД по его deal_id
+    with open(path_to_db, 'r', encoding='UTF-8') as file: # Читаем данные из базы. 
+        data = json.load(file)
+                  
+        for i in range(1, len(data)): 
+            if data[i]['deal_id'] == deal_id_delete: # находим индекс элемента в списке словарей с нужным deal_id
+                index_del = i
+        data.pop(index_del)   # Удаляем из списка словарь с нужным deal_id
+        for i in range(1, len(data)): # Перезаписаваем в каждом словаре списка ключ deal_id
+            data[i]['deal_id'] = i
+        
+        data[0]['id_counter'] -= 1 # Уменьшаем id_counter на 1
+    with open(path_to_db, 'w', encoding='UTF-8') as file: # Записываем в базу данных обновленный список словарей
+        json.dump(data, file)    
+    return data
 
 def clear_db(): # Очистка базы данных
     first_element = [{'id_counter': 0}, ]
@@ -50,7 +65,7 @@ def clear_db(): # Очистка базы данных
 if __name__ == "__main__":
 #Тестирование БД на тестовых данных test_data
     path_to_db = 'test_db.json'
-#   clear_db()
+    clear_db()
     test_data = [{"id_counter": 5}, 
             {'deal_id': 1, 'deal': 'Помыть кота', 'deadline': '12.05.2022', 'status': 'выполнено'}, 
             {'deal_id': 2, 'deal': 'Постирать', 'deadline': '12.07.2022', 'status': 'просрочено'},
@@ -61,23 +76,38 @@ if __name__ == "__main__":
     with open ('test_db.json', 'w') as test_file:
         json.dump(test_data,test_file)
 
-
+    print('')
     print('***get_all_deals()***')
     print(get_all_deals())
 
+    print('')
     print('***add_deal(test_deal_add)***')
     test_deal_add = {'deal_id': '', 'deal': 'Найти клад', 'deadline': '', 'status': 'новое'}
+    print('***')
+    print(test_deal_add)    
+    print('***')    
     print(add_deal(test_deal_add))
 
+    print('')
     print('***change_deal(test_deal_edit)***')
+    print('***')
+    print(get_one_deal(6))
+    print('***')
     test_deal_edit = {'deal_id': 6, 'deal': 'Найти клад', 'deadline': '29.06.2022', 'status': 'в работе'}
     print(change_deal(test_deal_edit))
 
+    print('')
     print('***get_one_deal(test_deal_id_get)***')
     test_deal_id_get = 3
     print(get_one_deal(test_deal_id_get))
 
-
+    print('')
+    print('***delete_deal(deal_delete)***')
+    test_deal_id_delete = 5
+    print('***')
+    print(get_one_deal(test_deal_id_delete))
+    print('***')
+    print(delete_deal(test_deal_id_delete))
 
 # def change_deal(deal):  # Изменение
 #     with open(path_to_db, 'r', encoding='UTF-8') as file:
