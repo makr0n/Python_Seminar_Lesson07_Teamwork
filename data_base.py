@@ -18,6 +18,15 @@ def get_one_deal(deal_id_get): # Возвращает одно дело по е�
                 one_deal_get = data[i]
     return one_deal_get
 
+def get_status_deal(deal_status_get): # Возвращает список дел по значению status
+    with open(path_to_db, 'r', encoding='UTF-8') as file: # Читаем данные из базы. 
+        data = json.load(file)
+        status_deal_get = []
+        for i in range(1, len(data)): 
+            if  data[i]['status'] == deal_status_get:
+                status_deal_get.append(data[i])
+    return status_deal_get
+
 def add_deal(deal_new):  # Добавление нового дела в БД {'deal_id': '', 'deal': 'Найти клад', 'deadline': '', 'status': 'новое'}
     with open(path_to_db, 'r', encoding='UTF-8') as file: # Читаем данные из базы. 
         data = json.load(file)
@@ -56,15 +65,16 @@ def delete_deal(deal_id_delete): # Удаление дела в БД по его
         json.dump(data, file)    
     #return data
 
-def clear_db(): # Очистка базы данных
+def clear_db(path_to_db): # Очистка базы данных
     first_element = [{'id_counter': 0}, ]
     with open(path_to_db, 'w') as file:
         json.dump(first_element, file)
 
 if __name__ == "__main__":
 #Тестирование БД на тестовых данных test_data
+    from pprint import pprint
     path_to_db = 'test_db.json'
-    clear_db()
+    clear_db(path_to_db)
     test_data = [{"id_counter": 5}, 
             {'deal_id': 1, 'deal': 'Помыть кота', 'deadline': '12.05.2022', 'status': 'выполнено'}, 
             {'deal_id': 2, 'deal': 'Постирать', 'deadline': '12.07.2022', 'status': 'просрочено'},
@@ -72,12 +82,12 @@ if __name__ == "__main__":
             {'deal_id': 4, 'deal': 'Написать To-do list', 'deadline': '16.07.2022', 'status': 'не выполнено'},
             {'deal_id': 5, 'deal': 'Съесть кактус', 'deadline': '', 'status': 'делать не буду'}]
 
-    with open ('test_db.json', 'w') as test_file:
+    with open (path_to_db, 'w') as test_file:
         json.dump(test_data,test_file)
 
     print('')
     print('***get_all_deals()***')
-    print(get_all_deals())
+    pprint(get_all_deals(), sort_dicts=False)
 
     print('')
     print('***add_deal(test_deal_add)***')
@@ -85,15 +95,18 @@ if __name__ == "__main__":
     print('***')
     print(test_deal_add)    
     print('***')    
-    print(add_deal(test_deal_add))
+    add_deal(test_deal_add)
+    with open (path_to_db, 'r') as test_file:
+        text = json.load(test_file)
+        pprint(text, sort_dicts=False)
 
     print('')
     print('***change_deal(test_deal_edit)***')
-    print('***')
-    print(get_one_deal(6))
-    print('***')
     test_deal_edit = {'deal_id': 6, 'deal': 'Найти клад', 'deadline': '29.06.2022', 'status': 'в работе'}
-    print(change_deal(test_deal_edit))
+    change_deal(test_deal_edit)
+    with open (path_to_db, 'r') as test_file:
+        text = json.load(test_file)
+        pprint(text, sort_dicts=False)
 
     print('')
     print('***get_one_deal(test_deal_id_get)***')
@@ -106,4 +119,15 @@ if __name__ == "__main__":
     print('***')
     print(get_one_deal(test_deal_id_delete))
     print('***')
-    print(delete_deal(test_deal_id_delete))
+    delete_deal(test_deal_id_delete)
+    with open (path_to_db, 'r') as test_file:
+        text = json.load(test_file)
+        pprint(text, sort_dicts=False)
+        
+    print('')
+    print('***get_status_deal(deal_status_get)***')
+    print('***')
+    deal_status_get = 'выполнено'
+    print(deal_status_get)
+    print('***')
+    pprint(get_status_deal(deal_status_get), sort_dicts=False)
