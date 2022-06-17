@@ -26,7 +26,7 @@ def add_deal(deal_new):  # Добавление нового дела в БД {'
         data.append(deal_new)     # Добавляем в список словарей новое дело   
     with open(path_to_db, 'w', encoding='UTF-8') as file: # Записываем в базу данных обновленный список словарей
         json.dump(data, file)
-    return data
+    #return data
 
 def change_deal(deal_edit):  # Изменение дела 
     with open(path_to_db, 'r', encoding='UTF-8') as file: # Читаем данные из базы. 
@@ -38,7 +38,7 @@ def change_deal(deal_edit):  # Изменение дела
         
     with open(path_to_db, 'w', encoding='UTF-8') as file: # Записываем в базу данных обновленный список словарей
         json.dump(data, file)    
-    return data
+    #return data
 
 def delete_deal(deal_id_delete): # Удаление дела в БД по его deal_id
     with open(path_to_db, 'r', encoding='UTF-8') as file: # Читаем данные из базы. 
@@ -54,7 +54,7 @@ def delete_deal(deal_id_delete): # Удаление дела в БД по его
         data[0]['id_counter'] -= 1 # Уменьшаем id_counter на 1
     with open(path_to_db, 'w', encoding='UTF-8') as file: # Записываем в базу данных обновленный список словарей
         json.dump(data, file)    
-    return data
+    #return data
 
 def clear_db(): # Очистка базы данных
     first_element = [{'id_counter': 0}, ]
