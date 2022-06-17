@@ -1,7 +1,6 @@
 # Процедуры работы с базой данных
 
 import json
-from queue import Empty
 
 path_to_db = 'db.json'
 
@@ -103,7 +102,7 @@ if __name__ == "__main__":
 
     print('')
     print('***delete_deal(deal_delete)***')
-    test_deal_id_delete = 4
+    test_deal_id_delete = 3
     print('***')
     print(get_one_deal(test_deal_id_delete))
     print('***')
