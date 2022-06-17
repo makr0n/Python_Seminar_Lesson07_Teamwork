@@ -102,57 +102,8 @@ if __name__ == "__main__":
 
     print('')
     print('***delete_deal(deal_delete)***')
-    test_deal_id_delete = 3
+    test_deal_id_delete = 5
     print('***')
     print(get_one_deal(test_deal_id_delete))
     print('***')
     print(delete_deal(test_deal_id_delete))
-
-# def change_deal(deal):  # Изменение
-#     with open(path_to_db, 'r', encoding='UTF-8') as file:
-
-#         #data = json.load(path_to_db)
-#         #data = [data[i] for i in range(1, len(data))]
-#         return data
-
-
-# def del_deal():  # Удаление
-#     data = json.load(path_to_db)
-#     data = [data[i] for i in range(1, len(data))]
-#     return data
-
-
-# def get_undone_deals():  # Возврат невыполненных status=0
-#     with open(path_to_db, 'r', encoding='UTF-8') as file:
-#         data = json.load(file)
-#         data = [data[i] for i in range(1, len(data)) if data[i]['status'] == 0]
-#     return data
-
-
-# def get_done_deals():  # Возврат выполненных status=1
-#     with open(path_to_db, 'r', encoding='UTF-8') as file:
-#         data = json.load(path_to_db)
-#         data = [data[i] for i in range(1, len(data)) if data[i]['status'] == 1]
-#     return data
-
-
-
-
-
-# def change(deal, deal_id=-1):
-#     with open('db.json', 'r') as file:
-#         data = json.load(file)  # тип data должен быть list
-#         if len(data) < 2:
-#             return 'baseIsEmpty'
-#     if deal_id == -1:
-#         data.append(deal)
-#     else:
-#         -1  # внести в указанное дело изменения
-
-
-# def get_data_undone():
-#     with open('db.json', 'r') as file:
-#         data = json.load(file)  # тип data должен быть list
-#         if len(data) < 2:
-#             return 'baseIsEmpty'
-#     return [deal for deal in data if deal['status'] == 0]
