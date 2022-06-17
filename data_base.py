@@ -48,10 +48,9 @@ def clear_db(): # Очистка базы данных
         json.dump(first_element, file)
 
 if __name__ == "__main__":
-#    clear_db()
-
 #Тестирование БД на тестовых данных test_data
     path_to_db = 'test_db.json'
+#   clear_db()
     test_data = [{"id_counter": 5}, 
             {'deal_id': 1, 'deal': 'Помыть кота', 'deadline': '12.05.2022', 'status': 'выполнено'}, 
             {'deal_id': 2, 'deal': 'Постирать', 'deadline': '12.07.2022', 'status': 'просрочено'},
@@ -128,13 +127,3 @@ if __name__ == "__main__":
 #         if len(data) < 2:
 #             return 'baseIsEmpty'
 #     return [deal for deal in data if deal['status'] == 0]
-
-
-def clear_db():
-    first_element = [{'id_counter': 0}, ]
-    with open('db.json', 'w') as file:
-        json.dump(first_element, file)
-
-
-if __name__ == "__main__":
-     clear_db()
