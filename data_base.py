@@ -103,7 +103,7 @@ if __name__ == "__main__":
 
     print('')
     print('***delete_deal(deal_delete)***')
-    test_deal_id_delete = 5
+    test_deal_id_delete = 4
     print('***')
     print(get_one_deal(test_deal_id_delete))
     print('***')
