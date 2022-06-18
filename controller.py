@@ -39,9 +39,11 @@ def run():
                 if changed_deal['status'] == 10:
                     data_base.delete_deal(changed_deal['deal_id'])
                     logger.add(changed_deal, 'deleted')
+                    interface.done_message()
                 else:
                     data_base.change_deal(changed_deal)
                     logger.add(changed_deal, 'changed')
+                    interface.done_message()
             
             case '5': # Выход
                 interface.bye_mess() # прошу дописать функцию bye в interface (прощание с юзером)
