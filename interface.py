@@ -48,7 +48,7 @@ def show_deals_by_status():
 
 def finished_deals():
     print('\033[4mСписок законченных дел:\033[0m')
-    print(data)
+    #print(data)
     print(50 * "=")
     start_page()
 
@@ -70,7 +70,7 @@ def change_deal():
     return deal_id
 
 
-def change_deal(one_deal):
+def change_deal_content(one_deal):
     command = input('Что необходимо сделать:\n 1 - Изменить статус \n 2 - Изменить содержание \n 3 - Удалить дело')
     if command == 1:
         status = (input('1-Новые, 2-В работе, 3-Отложенные, 4-Просроченные, 5-Выполенные'))

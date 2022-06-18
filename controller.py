@@ -35,7 +35,7 @@ def run():
                 interface.show_deals(data)
                 deal_id = interface.change_deal()
                 one_deal = data_base.get_one_deal(deal_id)
-                result = interface.change_deal(one_deal)
+                result = interface.change_deal_content(one_deal)
                 if result['status'] == 10:
                     data_base.delete_deal(result['deal_id'])
                 else:
