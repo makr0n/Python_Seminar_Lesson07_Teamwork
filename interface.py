@@ -48,7 +48,7 @@ def unfinished_deals():
 
 def finished_deals():  # 4 in menu
     print('\033[4mСписок законченных дел:\033[0m')
-    print(data)
+    #print(data)
     print(50 * "=")
     start_page()
 
@@ -67,8 +67,19 @@ def change_deal():
     print(50 * "~")
     show_deals(data)
     deal_id = input('Выберите номер дела которого необходимо изменить:')
-    command = input('Что необходимо сделать:\n 1 - Завершить дело\n 2 - Изменить содержание \n 3 - Удалить дело')
-    return command, deal_id
+    return deal_id
+
+
+def change_deal_content(one_deal):
+    command = input('Что необходимо сделать:\n 1 - Изменить статус \n 2 - Изменить содержание \n 3 - Удалить дело')
+    if command == 1:
+        status = (input('1-Новые, 2-В работе, 3-Отложенные, 4-Просроченные, 5-Выполенные'))
+        one_deal['status'] = int(status)
+    elif command == 2:
+        one_deal['deal'] = (input('Новое описание дела: '))
+    elif command == 3:
+        one_deal['status'] = 10 #Статус дела на удаление
+    return one_deal
 
 
 def bye_mess():  # 6 in menu
