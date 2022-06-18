@@ -66,10 +66,20 @@ def add_deal():
 def change_deal():
     print('\033[4mИзменение дела:\033[0m')
     print(50 * "~")
-    show_deals(data)
     deal_id = input('Выберите номер дела которого необходимо изменить:')
-    command = input('Что необходимо сделать:\n 1 - Завершить дело\n 2 - Изменить содержание \n 3 - Удалить дело')
-    return command, deal_id
+    return deal_id
+
+
+def change_deal(one_deal):
+    command = input('Что необходимо сделать:\n 1 - Изменить статус \n 2 - Изменить содержание \n 3 - Удалить дело')
+    if command == 1:
+        status = (input('1-Новые, 2-В работе, 3-Отложенные, 4-Просроченные, 5-Выполенные'))
+        one_deal['status'] = int(status)
+    elif command == 2:
+        one_deal['deal'] = (input('Новое описание дела: '))
+    else command == 3:
+        one_deal['status'] = 10 #Статус дела на удаление
+    return one_deal
 
 
 def bye_mess():  # 6 in menu
@@ -81,6 +91,7 @@ def error_input():
     print('\033[21mПожалуйста введите число, соответствующее пункту меню.\033[0m')
     time.sleep(2)
     start_page()
+
 
 def done_message():
     print('Выполнено!')
