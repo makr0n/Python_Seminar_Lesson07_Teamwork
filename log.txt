@@ -10,3 +10,4 @@
 {'deal_id': 5, 'deal': 'Сделать паузу', 'deadline': '18-06-2022', 'status': 4}; changed; 2022-06-18 14:23:28 
 {'deal_id': 5, 'deal': 'Сделать паузу', 'deadline': '18-06-2022', 'status': 2}; changed; 2022-06-18 14:25:03 
 {'deal_id': 8, 'deal': 'выаыва', 'deadline': '02-02-2022', 'status': 1}; added; 2022-06-18 14:29:33 
+{'deal_id': 9, 'deal': 'dsfsdf', 'deadline': '12-12-2022', 'status': 1}; added; 2022-06-18 16:49:18 
