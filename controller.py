@@ -24,6 +24,7 @@ def run():
             
             
             case '3': # Добавить дело
+
                 new_deal = interface.add_deal() # user_data - введенные юзером данные в удобном формате. Здесь я их преобразую в стандартный наш словарь и передам в data_base и logger
                 data_base.add_deal(new_deal)
                 logger.add(new_deal, 'add')
