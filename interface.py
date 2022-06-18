@@ -59,7 +59,7 @@ def add_deal():
     deal_name = input('Что необходимо сделать: ')  # plain text
     deal_deadline = input('Укажите сроки выполнения в формате ДД-ММ-ГГ: ')  # DD-MM-YY
     deal = {'deal_id': -1, 'deal': deal_name, 'deadline': deal_deadline, 'status': 1}
-
+    deal['status'] = 'Новое'
     return deal
 
 
@@ -81,3 +81,6 @@ def error_input():
     print('\033[21mПожалуйста введите число, соответствующее пункту меню.\033[0m')
     time.sleep(2)
     start_page()
+
+def done_message():
+    print('Выполнено!')
