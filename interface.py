@@ -5,11 +5,10 @@ import time
 main_menu = \
     'Выберите пункт меню:\n\
     1. \033[4mСписок всех дел\033[0m\n\
-    2. \033[4mСписок незавершенных дел\033[0m\n\
-    3. \033[4mСписок завершенных дел\033[0m\n\
-    4. \033[4mДобавить дело\033[0m\n\
-    5. \033[4mИзменить дело\033[0m\n\
-    6. \033[4mВыход\033[0m'
+    2. \033[4mСписок дел по статусу\033[0m\n\
+    3. \033[4mДобавить дело\033[0m\n\
+    4. \033[4mИзменить дело\033[0m\n\
+    5. \033[4mВыход\033[0m'
 
 
 def start_page():  # Starting page, choose number
@@ -25,7 +24,7 @@ def start_page():  # Starting page, choose number
 
 
 def show_deals(data):  # 1 in menu
-    # os.system('cls')
+
     if data != []:
 
         print('\033[4mСписок всех дел:\033[0m')
@@ -40,13 +39,14 @@ def show_deals(data):  # 1 in menu
         print('\033[33mСписок дел пуст\033[0m')
 
 
-def unfinished_deals():
-    print('\033[4mСписок текущих дел:\033[0m')
-    print(data)
+def show_deals_by_status():
+    print('\033[4mВыберите статус дела для отображения:\033[0m')
+    status = int(input('1-Новые, 2-В работе, 3-Отложенные, 4-Просроченные, 5-Выполенные'))
     print(50 * "=")
+    return status
 
 
-def finished_deals():  # 4 in menu
+def finished_deals():
     print('\033[4mСписок законченных дел:\033[0m')
     print(data)
     print(50 * "=")
