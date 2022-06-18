@@ -1,5 +1,7 @@
 import time
 
+# import os
+
 main_menu = \
     'Выберите пункт меню:\n\
     1. \033[4mСписок всех дел\033[0m\n\
@@ -11,20 +13,31 @@ main_menu = \
 
 
 def start_page():  # Starting page, choose number
+    print('╔' + 48 * "=" + '╗')
     print('            \033[3;36mСписок Дел v0.1\033[0m')
-    print(50 * "=")
+    print('╚' + 48 * "=" + '╝')
     print(main_menu)
     print(50 * "=")
+    print()
     command = int(input('\033[1mВыберите действие: \033[0m'))
-    print(50 * "=")
+    print(50 * "•")
     return command
 
 
 def show_deals(data):  # 1 in menu
-    print('\033[4mСписок всех дел:\033[0m')
-    print(data)
-    print(50 * "=")
-    start_page()
+    # os.system('cls')
+    if data != []:
+
+        print('\033[4mСписок всех дел:\033[0m')
+        for item in range(len(data)):
+            a = data[item]['deal_id']
+            b = data[item]['deal']
+            c = data[item]['deadline']
+            d = data[item]['status']
+            print(f'{a}) {b}. {c}. {d}. ')
+        print(50 * "•")
+    else:
+        print('\033[33mСписок дел пуст\033[0m')
 
 
 def unfinished_deals():
@@ -42,9 +55,9 @@ def finished_deals():  # 4 in menu
 
 def add_deal():
     print('\033[3mДобавление дела\033[0m')
-    print(50 * "=")
+    print(50 * "-")
     deal_name = input('Что необходимо сделать: ')  # plain text
-    deal_deadline = input('Сроки выполнения: ')  # DD-MM-YYYY
+    deal_deadline = input('Укажите сроки выполнения в формате ДД-ММ-ГГ: ')  # DD-MM-YY
     deal = deal_name + deal_deadline
     return deal
 
@@ -53,17 +66,13 @@ def change_deal():
     print('\033[4mИзменение дела:\033[0m')
     print(50 * "~")
     show_deals(data)
-    deal_id = input('Выберите дело:')
-    command = input('Что сделать: 1 - завершить, 2 - изменить, 3 - удалить')
+    deal_id = input('Выберите номер дела которого необходимо изменить:')
+    command = input('Что необходимо сделать:\n 1 - Завершить дело\n 2 - Изменить содержание \n 3 - Удалить дело')
     return command, deal_id
 
 
-def bye_mess(): #6 in menu
+def bye_mess():  # 6 in menu
     print('Работа завершена!')
-
-
-def result_message(result):
-    print('ok') if result == True else print('error')
 
 
 def error_input():
