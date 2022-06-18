@@ -1,6 +1,6 @@
 [
     {
-        "id_counter": 9
+        "id_counter": 6
     },
     {
         "deal_id": 1,
@@ -16,44 +16,26 @@
     },
     {
         "deal_id": 3,
-        "deal": "\u043f\u0438\u0444 \u043f\u0430\u0444",
-        "deadline": "45-09-09",
-        "status": 2
-    },
-    {
-        "deal_id": 4,
-        "deal": "wash",
-        "deadline": "09-09-09",
-        "status": 4
-    },
-    {
-        "deal_id": 5,
         "deal": "\u0421\u0434\u0435\u043b\u0430\u0442\u044c \u043f\u0430\u0443\u0437\u0443",
         "deadline": "18-06-2022",
         "status": 2
     },
     {
-        "deal_id": 6,
+        "deal_id": 4,
         "deal": "\u041a\u0443\u0440\u0438\u0442\u044c",
         "deadline": "12-02-2022",
         "status": 1
     },
     {
-        "deal_id": 7,
-        "deal": "dfdd",
-        "deadline": "12-12-2012",
+        "deal_id": 5,
+        "deal": "\u041f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c \u043b\u043e\u0433\u0433\u0435\u0440",
+        "deadline": "18-06-22",
         "status": 1
     },
     {
-        "deal_id": 8,
-        "deal": "\u0432\u044b\u0430\u044b\u0432\u0430",
-        "deadline": "02-02-2022",
-        "status": 1
-    },
-    {
-        "deal_id": 9,
-        "deal": "dsfsdf",
-        "deadline": "12-12-2022",
-        "status": 1
+        "deal_id": 6,
+        "deal": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0441\u043f\u0438\u0441\u043e\u043a",
+        "deadline": "18-06-22",
+        "status": 2
     }
 ]
