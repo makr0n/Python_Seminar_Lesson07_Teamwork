@@ -24,11 +24,12 @@ def run():
             
             
             case '3': # Добавить дело
-                deal_id = -1
-                user_data = interface.add_deal() # user_data - введенные юзером данные в удобном формате. Здесь я их преобразую в стандартный наш словарь и передам в data_base и logger
-                data_base.add_deal(user_data)
-                logger.add(user_data, 'add') ## прошу написать функцию add в logger, которая принимает стандартный наш словарь и в данном случае признак add (добавить)
-            
+
+                new_deal = interface.add_deal() # user_data - введенные юзером данные в удобном формате. Здесь я их преобразую в стандартный наш словарь и передам в data_base и logger
+                data_base.add_deal(new_deal)
+                logger.add(new_deal, 'add')
+                interface.done_message()
+
             case '4': # Изменить дело
                 data = data_base.get_one_deal(deal_id)
                 interface.show_deals(data)
