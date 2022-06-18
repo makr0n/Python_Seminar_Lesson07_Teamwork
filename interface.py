@@ -77,7 +77,7 @@ def change_deal(one_deal):
         one_deal['status'] = int(status)
     elif command == 2:
         one_deal['deal'] = (input('Новое описание дела: '))
-    else command == 3:
+    elif command == 3:
         one_deal['status'] = 10 #Статус дела на удаление
     return one_deal
 
