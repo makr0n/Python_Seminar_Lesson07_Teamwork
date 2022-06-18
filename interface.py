@@ -48,7 +48,7 @@ def show_deals_by_status():
 
 def finished_deals():
     print('\033[4mСписок законченных дел:\033[0m')
-    print(data)
+    #print(data)
     print(50 * "=")
     start_page()
 
