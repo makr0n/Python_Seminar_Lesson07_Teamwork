@@ -15,21 +15,21 @@ def run():
                 interface.show_deals(data) ## предлагаю не вводить команду юзера, а после вывода дел вызывать главное меню + дописать исключение, если 'baseIsEmpty'
 
             case '2': # Список дел по статусу
-                status = -1
+                status = interface.show_deals_by_status()
+                while status not in range(1,6):
+                    interface.error_input()
+                    status = interface.show_deals_by_status()
                 data = data_base.get_status_deal(status) ## прошу переименовать функцию get_data_undone в data_base
                 interface.show_deals(data)
             
-            case '3': # Список завершенных дел
-                data = data_base.get_done_deals() ## прошу дописать функцию get_done_deals в data_base
-                interface.show_deals(data)
             
-            case '4': # Добавить дело
+            case '3': # Добавить дело
                 deal_id = -1
                 user_data = interface.add_deal() # user_data - введенные юзером данные в удобном формате. Здесь я их преобразую в стандартный наш словарь и передам в data_base и logger
                 data_base.add_deal(user_data)
                 logger.logger(user_data, 'add') ## прошу написать функцию add в logger, которая принимает стандартный наш словарь и в данном случае признак add (добавить)
             
-            case '5': # Изменить дело
+            case '4': # Изменить дело
                 data = data_base.get_one_deal(deal_id)
                 interface.show_deals(data)
                 user_answer = interface.change_deal() ## user_answer - выбор юзера и/или измененные данные в удобном формате,
@@ -39,7 +39,7 @@ def run():
                 
                 change_action (user_answer) # функцию дописал в controller ниже, в которой формируем запрос для data_base.change
             
-            case '6': # Выход
+            case '5': # Выход
                 interface.bye_mess() # прошу дописать функцию bye в interface (прощание с юзером)
                 break
             
