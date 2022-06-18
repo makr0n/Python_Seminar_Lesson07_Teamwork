@@ -13,6 +13,7 @@ def get_all_deals():  # Возвращает весь список дел из �
 def get_one_deal(deal_id_get): # Возвращает одно дело по его deal_id
     with open(path_to_db, 'r', encoding='UTF-8') as file: # Читаем данные из базы. 
         data = json.load(file)
+        one_deal_get = {}
         for i in range(1, len(data)): 
             if deal_id_get == data[i]['deal_id']:
                 one_deal_get = data[i]
