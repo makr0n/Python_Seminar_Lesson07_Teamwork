@@ -12,9 +12,9 @@ main_menu = \
 
 
 def start_page():  # Starting page, choose number
-    print('╔' + 48 * "=" + '╗')
+    print('╔' + 48 * "═" + '╗')
     print('            \033[3;36mСписок Дел v0.1\033[0m')
-    print('╚' + 48 * "=" + '╝')
+    print('╚' + 48 * "═" + '╝')
     print(main_menu)
     print(50 * "=")
     print()
@@ -41,7 +41,7 @@ def show_deals(data):  # 1 in menu
 
 def show_deals_by_status():
     print('\033[4mВыберите статус дела для отображения:\033[0m')
-    status = (input('1-Новые, 2-В работе, 3-Отложенные, 4-Просроченные, 5-Выполенные'))
+    status = (input('1-Новые, 2-В работе, 3-Отложенные, 4-Просроченные, 5-Выполенные\n'))
     print(50 * "=")
     return status
 
@@ -66,12 +66,12 @@ def add_deal():
 def change_deal():
     print('\033[4mИзменение дела:\033[0m')
     print(50 * "~")
-    deal_id = input('Выберите номер дела которого необходимо изменить:')
+    deal_id = int(input('Выберите номер дела которого необходимо изменить:'))
     return deal_id
 
 
 def change_deal_content(one_deal):
-    command = input('Что необходимо сделать:\n 1 - Изменить статус \n 2 - Изменить содержание \n 3 - Удалить дело')
+    command = input('Что необходимо сделать:\n 1 - Изменить статус \n 2 - Изменить содержание \n 3 - Удалить дело\n')
     if command == 1:
         status = (input('1-Новые, 2-В работе, 3-Отложенные, 4-Просроченные, 5-Выполенные'))
         one_deal['status'] = int(status)
