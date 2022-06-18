@@ -19,7 +19,7 @@ def start_page():  # Starting page, choose number
     print(main_menu)
     print(50 * "=")
     print()
-    command = input('\033[1mВыберите действие: \033[0m')
+    command = int(input('\033[1mВыберите действие: \033[0m'))
     print(50 * "•")
     return command
 
