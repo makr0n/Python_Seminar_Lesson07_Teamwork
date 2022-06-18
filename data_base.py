@@ -4,7 +4,6 @@ import json
 
 path_to_db = 'db.json'
 
-
 def get_all_deals():  # Возвращает весь список дел из файла db.json
     with open(path_to_db, 'r', encoding='UTF-8') as file:
         data = json.load(file)
@@ -19,6 +18,15 @@ def get_one_deal(deal_id_get): # Возвращает одно дело по е�
                 one_deal_get = data[i]
     return one_deal_get
 
+def get_status_deal(deal_status_get): # Возвращает список дел по значению status
+    with open(path_to_db, 'r', encoding='UTF-8') as file: # Читаем данные из базы. 
+        data = json.load(file)
+        status_deal_get = []
+        for i in range(1, len(data)): 
+            if  data[i]['status'] == deal_status_get:
+                status_deal_get.append(data[i])
+    return status_deal_get
+
 def add_deal(deal_new):  # Добавление нового дела в БД {'deal_id': '', 'deal': 'Найти клад', 'deadline': '', 'status': 'новое'}
     with open(path_to_db, 'r', encoding='UTF-8') as file: # Читаем данные из базы. 
         data = json.load(file)
@@ -27,9 +35,9 @@ def add_deal(deal_new):  # Добавление нового дела в БД {'
         data.append(deal_new)     # Добавляем в список словарей новое дело   
     with open(path_to_db, 'w', encoding='UTF-8') as file: # Записываем в базу данных обновленный список словарей
         json.dump(data, file)
-    return data
+    #return data
 
-def change_deal(deal_edit):  # Изменение дела с deal_id = 6 в БД на {'deal_id': 6, 'deal': 'Найти клад', 'deadline': '30.06.2022', 'status': 'в работе'}
+def change_deal(deal_edit):  # Изменение дела 
     with open(path_to_db, 'r', encoding='UTF-8') as file: # Читаем данные из базы. 
         data = json.load(file)
 
@@ -39,19 +47,34 @@ def change_deal(deal_edit):  # Изменение дела с deal_id = 6 в Б�
         
     with open(path_to_db, 'w', encoding='UTF-8') as file: # Записываем в базу данных обновленный список словарей
         json.dump(data, file)    
-    return data
+    #return data
 
+def delete_deal(deal_id_delete): # Удаление дела в БД по его deal_id
+    with open(path_to_db, 'r', encoding='UTF-8') as file: # Читаем данные из базы. 
+        data = json.load(file)
+                  
+        for i in range(1, len(data)): 
+            if data[i]['deal_id'] == deal_id_delete: # находим индекс элемента в списке словарей с нужным deal_id
+                index_del = i
+        data.pop(index_del)   # Удаляем из списка словарь с нужным deal_id
+        for i in range(1, len(data)): # Перезаписаваем в каждом словаре списка ключ deal_id
+            data[i]['deal_id'] = i
+        
+        data[0]['id_counter'] -= 1 # Уменьшаем id_counter на 1
+    with open(path_to_db, 'w', encoding='UTF-8') as file: # Записываем в базу данных обновленный список словарей
+        json.dump(data, file)    
+    #return data
 
-def clear_db(): # Очистка базы данных
+def clear_db(path_to_db): # Очистка базы данных
     first_element = [{'id_counter': 0}, ]
     with open(path_to_db, 'w') as file:
         json.dump(first_element, file)
 
 if __name__ == "__main__":
-#    clear_db()
-
 #Тестирование БД на тестовых данных test_data
+    from pprint import pprint
     path_to_db = 'test_db.json'
+    clear_db(path_to_db)
     test_data = [{"id_counter": 5}, 
             {'deal_id': 1, 'deal': 'Помыть кота', 'deadline': '12.05.2022', 'status': 'выполнено'}, 
             {'deal_id': 2, 'deal': 'Постирать', 'deadline': '12.07.2022', 'status': 'просрочено'},
@@ -59,82 +82,52 @@ if __name__ == "__main__":
             {'deal_id': 4, 'deal': 'Написать To-do list', 'deadline': '16.07.2022', 'status': 'не выполнено'},
             {'deal_id': 5, 'deal': 'Съесть кактус', 'deadline': '', 'status': 'делать не буду'}]
 
-    with open ('test_db.json', 'w') as test_file:
+    with open (path_to_db, 'w') as test_file:
         json.dump(test_data,test_file)
 
-
+    print('')
     print('***get_all_deals()***')
-    print(get_all_deals())
+    pprint(get_all_deals(), sort_dicts=False)
 
+    print('')
     print('***add_deal(test_deal_add)***')
     test_deal_add = {'deal_id': '', 'deal': 'Найти клад', 'deadline': '', 'status': 'новое'}
-    print(add_deal(test_deal_add))
+    print('***')
+    print(test_deal_add)    
+    print('***')    
+    add_deal(test_deal_add)
+    with open (path_to_db, 'r') as test_file:
+        text = json.load(test_file)
+        pprint(text, sort_dicts=False)
 
+    print('')
     print('***change_deal(test_deal_edit)***')
     test_deal_edit = {'deal_id': 6, 'deal': 'Найти клад', 'deadline': '29.06.2022', 'status': 'в работе'}
-    print(change_deal(test_deal_edit))
+    change_deal(test_deal_edit)
+    with open (path_to_db, 'r') as test_file:
+        text = json.load(test_file)
+        pprint(text, sort_dicts=False)
 
+    print('')
     print('***get_one_deal(test_deal_id_get)***')
     test_deal_id_get = 3
     print(get_one_deal(test_deal_id_get))
 
-
-
-# def change_deal(deal):  # Изменение
-#     with open(path_to_db, 'r', encoding='UTF-8') as file:
-
-#         #data = json.load(path_to_db)
-#         #data = [data[i] for i in range(1, len(data))]
-#         return data
-
-
-# def del_deal():  # Удаление
-#     data = json.load(path_to_db)
-#     data = [data[i] for i in range(1, len(data))]
-#     return data
-
-
-# def get_undone_deals():  # Возврат невыполненных status=0
-#     with open(path_to_db, 'r', encoding='UTF-8') as file:
-#         data = json.load(file)
-#         data = [data[i] for i in range(1, len(data)) if data[i]['status'] == 0]
-#     return data
-
-
-# def get_done_deals():  # Возврат выполненных status=1
-#     with open(path_to_db, 'r', encoding='UTF-8') as file:
-#         data = json.load(path_to_db)
-#         data = [data[i] for i in range(1, len(data)) if data[i]['status'] == 1]
-#     return data
-
-
-
-
-
-# def change(deal, deal_id=-1):
-#     with open('db.json', 'r') as file:
-#         data = json.load(file)  # тип data должен быть list
-#         if len(data) < 2:
-#             return 'baseIsEmpty'
-#     if deal_id == -1:
-#         data.append(deal)
-#     else:
-#         -1  # внести в указанное дело изменения
-
-
-# def get_data_undone():
-#     with open('db.json', 'r') as file:
-#         data = json.load(file)  # тип data должен быть list
-#         if len(data) < 2:
-#             return 'baseIsEmpty'
-#     return [deal for deal in data if deal['status'] == 0]
-
-
-def clear_db():
-    first_element = [{'id_counter': 0}, ]
-    with open('db.json', 'w') as file:
-        json.dump(first_element, file)
-
-
-if __name__ == "__main__":
-     clear_db()
+    print('')
+    print('***delete_deal(deal_delete)***')
+    test_deal_id_delete = 5
+    print('***')
+    print(get_one_deal(test_deal_id_delete))
+    print('***')
+    delete_deal(test_deal_id_delete)
+    with open (path_to_db, 'r') as test_file:
+        text = json.load(test_file)
+        pprint(text, sort_dicts=False)
+        
+    print('')
+    print('***get_status_deal(deal_status_get)***')
+    print('***')
+    deal_status_get = 'выполнено'
+    print(deal_status_get)
+    print('***')
+    pprint(get_status_deal(deal_status_get), sort_dicts=False)

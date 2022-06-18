@@ -10,24 +10,24 @@ def run():
         command = interface.start_page()
 
         match command:
-            case 1:     # Список всех дел
+            case '1':     # Список всех дел
                 data = data_base.get_all_deals() ## прошу дописать функцию в data_base
                 interface.show_deals(data) ## предлагаю не вводить команду юзера, а после вывода дел вызывать главное меню + дописать исключение, если 'baseIsEmpty'
 
-            case 2: # Список незавершенных дел
+            case '2': # Список незавершенных дел
                 data = data_base.get_undone_deals() ## прошу переименовать функцию get_data_undone в data_base
                 interface.show_deals(data)
             
-            case 3: # Список завершенных дел
+            case '3': # Список завершенных дел
                 data = data_base.get_done_deals() ## прошу дописать функцию get_done_deals в data_base
                 interface.show_deals(data)
             
-            case 4: # Добавить дело
+            case '4': # Добавить дело
                 user_data = interface.add_deal() # user_data - введенные юзером данные в удобном формате. Здесь я их преобразую в стандартный наш словарь и передам в data_base и logger
                 data_base.add_deal(user_data)
                 logger.logger(user_data, 'add') ## прошу написать функцию add в logger, которая принимает стандартный наш словарь и в данном случае признак add (добавить)
             
-            case 5: # Изменить дело
+            case '5': # Изменить дело
                 data = data_base.get_undone_deals()
                 interface.show_deals(data)
                 user_answer = interface.change_deal() ## user_answer - выбор юзера и/или измененные данные в удобном формате,
@@ -37,7 +37,7 @@ def run():
                 
                 change_action (user_answer) # функцию дописал в controller ниже, в которой формируем запрос для data_base.change
             
-            case 6: # Выход
+            case '6': # Выход
                 interface.bye_mess() # прошу дописать функцию bye в interface (прощание с юзером)
                 break
             
