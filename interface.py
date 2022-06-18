@@ -41,7 +41,7 @@ def show_deals(data):  # 1 in menu
 
 def show_deals_by_status():
     print('\033[4mВыберите статус дела для отображения:\033[0m')
-    status = int(input('1-Новые, 2-В работе, 3-Отложенные, 4-Просроченные, 5-Выполенные'))
+    status = (input('1-Новые, 2-В работе, 3-Отложенные, 4-Просроченные, 5-Выполенные'))
     print(50 * "=")
     return status
 
@@ -58,7 +58,8 @@ def add_deal():
     print(50 * "-")
     deal_name = input('Что необходимо сделать: ')  # plain text
     deal_deadline = input('Укажите сроки выполнения в формате ДД-ММ-ГГ: ')  # DD-MM-YY
-    deal = deal_name + deal_deadline
+    deal = {'deal_id': -1, 'deal': deal_name, 'deadline': deal_deadline, 'status': 1}
+    deal['status'] = 'Новое'
     return deal
 
 
@@ -80,3 +81,6 @@ def error_input():
     print('\033[21mПожалуйста введите число, соответствующее пункту меню.\033[0m')
     time.sleep(2)
     start_page()
+
+def done_message():
+    print('Выполнено!')

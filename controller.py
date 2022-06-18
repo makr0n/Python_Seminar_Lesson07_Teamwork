@@ -27,7 +27,7 @@ def run():
                 deal_id = -1
                 user_data = interface.add_deal() # user_data - введенные юзером данные в удобном формате. Здесь я их преобразую в стандартный наш словарь и передам в data_base и logger
                 data_base.add_deal(user_data)
-                logger.logger(user_data, 'add') ## прошу написать функцию add в logger, которая принимает стандартный наш словарь и в данном случае признак add (добавить)
+                logger.add(user_data, 'add') ## прошу написать функцию add в logger, которая принимает стандартный наш словарь и в данном случае признак add (добавить)
             
             case '4': # Изменить дело
                 data = data_base.get_one_deal(deal_id)
