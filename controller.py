@@ -14,8 +14,9 @@ def run():
                 data = data_base.get_all_deals() ## прошу дописать функцию в data_base
                 interface.show_deals(data) ## предлагаю не вводить команду юзера, а после вывода дел вызывать главное меню + дописать исключение, если 'baseIsEmpty'
 
-            case '2': # Список незавершенных дел
-                data = data_base.get_undone_deals() ## прошу переименовать функцию get_data_undone в data_base
+            case '2': # Список дел по статусу
+                status = -1
+                data = data_base.get_status_deal(status) ## прошу переименовать функцию get_data_undone в data_base
                 interface.show_deals(data)
             
             case '3': # Список завершенных дел
@@ -23,12 +24,13 @@ def run():
                 interface.show_deals(data)
             
             case '4': # Добавить дело
+                deal_id = -1
                 user_data = interface.add_deal() # user_data - введенные юзером данные в удобном формате. Здесь я их преобразую в стандартный наш словарь и передам в data_base и logger
                 data_base.add_deal(user_data)
                 logger.logger(user_data, 'add') ## прошу написать функцию add в logger, которая принимает стандартный наш словарь и в данном случае признак add (добавить)
             
             case '5': # Изменить дело
-                data = data_base.get_undone_deals()
+                data = data_base.get_one_deal(deal_id)
                 interface.show_deals(data)
                 user_answer = interface.change_deal() ## user_answer - выбор юзера и/или измененные данные в удобном формате,
                                                       ## например {user_choise:1, deal_id: 11, User_input:'измененыый текст дела', deadline: 'not_changed', status: 1}

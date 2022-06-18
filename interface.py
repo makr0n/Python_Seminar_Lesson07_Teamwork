@@ -15,7 +15,7 @@ def start_page():  # Starting page, choose number
     print(50 * "=")
     print(main_menu)
     print(50 * "=")
-    command = int(input('\033[1mВыберите действие: \033[0m'))
+    command = input('\033[1mВыберите действие: \033[0m')
     print(50 * "=")
     return command
 
