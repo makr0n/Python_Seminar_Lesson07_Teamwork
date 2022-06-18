@@ -27,7 +27,7 @@ def run():
 
                 new_deal = interface.add_deal() # user_data - введенные юзером данные в удобном формате. Здесь я их преобразую в стандартный наш словарь и передам в data_base и logger
                 data_base.add_deal(new_deal)
-                logger.add(new_deal, 'add')
+                logger.add(new_deal, 'added')
                 interface.done_message()
 
             case '4': # Изменить дело
@@ -35,11 +35,13 @@ def run():
                 interface.show_deals(data)
                 deal_id = interface.change_deal()
                 one_deal = data_base.get_one_deal(deal_id)
-                result = interface.change_deal_content(one_deal)
-                if result['status'] == 10:
-                    data_base.delete_deal(result['deal_id'])
+                changed_deal = interface.change_deal_content(one_deal)
+                if changed_deal['status'] == 10:
+                    data_base.delete_deal(changed_deal['deal_id'])
+                    logger.add(changed_deal, 'deleted')
                 else:
-                    data_base.change_deal(result)
+                    data_base.change_deal(changed_deal)
+                    logger.add(changed_deal, 'changed')
             
             case '5': # Выход
                 interface.bye_mess() # прошу дописать функцию bye в interface (прощание с юзером)

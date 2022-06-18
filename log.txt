@@ -1,2 +1,13 @@
 {'deal_id': 8, 'deal': 'Сделать паузу', 'deadline': '18-06-2022', 'status': 'Новое'}; add; 2022-06-18 13:04:39 
 {'deal_id': 9, 'deal': 'Курить', 'deadline': '12-02-2022', 'status': 1}; add; 2022-06-18 13:05:43 
+{'deal_id': 1, 'deal': 'Прррр', 'deadline': '20.07.2022', 'status': 10}; deleted; 2022-06-18 13:55:00 
+{'deal_id': 7, 'deal': 'dfdd', 'deadline': '12-12-2012', 'status': 1}; added; 2022-06-18 13:56:01 
+{'deal_id': 4, 'deal': 'wash', 'deadline': '09-09-09', 'status': 4}; changed; 2022-06-18 14:06:28 
+{'deal_id': 3, 'deal': 'пиф паф', 'deadline': '45-09-09', 'status': 'Новое'}; changed; 2022-06-18 14:06:50 
+{'deal_id': 1, 'deal': 'Найти клад', 'deadline': '29.06.2022', 'status': 2}; changed; 2022-06-18 14:22:34 
+{'deal_id': 2, 'deal': 'Мыть ', 'deadline': '09-98-09', 'status': 2}; changed; 2022-06-18 14:23:05 
+{'deal_id': 3, 'deal': 'пиф паф', 'deadline': '45-09-09', 'status': 2}; changed; 2022-06-18 14:23:15 
+{'deal_id': 5, 'deal': 'Сделать паузу', 'deadline': '18-06-2022', 'status': 4}; changed; 2022-06-18 14:23:28 
+{'deal_id': 5, 'deal': 'Сделать паузу', 'deadline': '18-06-2022', 'status': 2}; changed; 2022-06-18 14:25:03 
+{'deal_id': 8, 'deal': 'выаыва', 'deadline': '02-02-2022', 'status': 1}; added; 2022-06-18 14:29:33 
+{'deal_id': 9, 'deal': 'dsfsdf', 'deadline': '12-12-2022', 'status': 1}; added; 2022-06-18 16:49:18 

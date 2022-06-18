@@ -36,7 +36,7 @@ def add_deal(deal_new):  # Добавление нового дела в БД {'
         deal_new['deal_id'] = data[0]['id_counter'] # Присваиваем значение id_counter ключу deal_id
         data.append(deal_new)     # Добавляем в список словарей новое дело   
     with open(path_to_db, 'w', encoding='UTF-8') as file: # Записываем в базу данных обновленный список словарей
-        json.dump(data, file)
+        json.dump(data, file, indent=4)
     #return data
 
 def change_deal(deal_edit):  # Изменение дела 
@@ -48,7 +48,7 @@ def change_deal(deal_edit):  # Изменение дела
                 data[i] = deal_edit
         
     with open(path_to_db, 'w', encoding='UTF-8') as file: # Записываем в базу данных обновленный список словарей
-        json.dump(data, file)    
+        json.dump(data, file, indent=4)    
     #return data
 
 def delete_deal(deal_id_delete): # Удаление дела в БД по его deal_id
@@ -64,13 +64,13 @@ def delete_deal(deal_id_delete): # Удаление дела в БД по его
         
         data[0]['id_counter'] -= 1 # Уменьшаем id_counter на 1
     with open(path_to_db, 'w', encoding='UTF-8') as file: # Записываем в базу данных обновленный список словарей
-        json.dump(data, file)    
+        json.dump(data, file, indent=4)    
     #return data
 
 def clear_db(path_to_db): # Очистка базы данных
     first_element = [{'id_counter': 0}, ]
     with open(path_to_db, 'w') as file:
-        json.dump(first_element, file)
+        json.dump(first_element, file, indent=4)
 
 if __name__ == "__main__":
 #Тестирование БД на тестовых данных test_data
