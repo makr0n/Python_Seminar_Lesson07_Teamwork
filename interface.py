@@ -41,7 +41,7 @@ def show_deals(data):  # 1 in menu
 
 def show_deals_by_status():
     print('\033[4mВыберите статус дела для отображения:\033[0m')
-    status = (input('1-Новые, 2-В работе, 3-Отложенные, 4-Просроченные, 5-Выполенные'))
+    status = int(input('1-Новые, 2-В работе, 3-Отложенные, 4-Просроченные, 5-Выполенные'))
     print(50 * "=")
     return status
 
@@ -59,7 +59,7 @@ def add_deal():
     deal_name = input('Что необходимо сделать: ')  # plain text
     deal_deadline = input('Укажите сроки выполнения в формате ДД-ММ-ГГ: ')  # DD-MM-YY
     deal = {'deal_id': -1, 'deal': deal_name, 'deadline': deal_deadline, 'status': 1}
-    deal['status'] = 'Новое'
+    deal['status'] = 1
     return deal
 
 
@@ -67,17 +67,17 @@ def change_deal():
     print('\033[4mИзменение дела:\033[0m')
     print(50 * "~")
     deal_id = input('Выберите номер дела которого необходимо изменить:')
-    return deal_id
+    return int(deal_id)
 
 
 def change_deal_content(one_deal):
     command = input('Что необходимо сделать:\n 1 - Изменить статус \n 2 - Изменить содержание \n 3 - Удалить дело')
-    if command == 1:
+    if command == '1':
         status = (input('1-Новые, 2-В работе, 3-Отложенные, 4-Просроченные, 5-Выполенные'))
         one_deal['status'] = int(status)
-    elif command == 2:
+    elif command == '2':
         one_deal['deal'] = (input('Новое описание дела: '))
-    elif command == 3:
+    elif command == '3':
         one_deal['status'] = 10 #Статус дела на удаление
     return one_deal
 
@@ -95,3 +95,4 @@ def error_input():
 
 def done_message():
     print('Выполнено!')
+
