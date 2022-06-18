@@ -17,6 +17,7 @@ def get_one_deal(deal_id_get): # Возвращает одно дело по е�
         for i in range(1, len(data)): 
             if deal_id_get == data[i]['deal_id']:
                 one_deal_get = data[i]
+                break
     return one_deal_get
 
 def get_status_deal(deal_status_get): # Возвращает список дел по значению status
