@@ -31,14 +31,15 @@ def run():
                 interface.done_message()
 
             case '4': # Изменить дело
-                data = data_base.get_one_deal(deal_id)
+                data = data_base.get_all_deals()
                 interface.show_deals(data)
-                user_answer = interface.change_deal() ## user_answer - выбор юзера и/или измененные данные в удобном формате,
-                                                      ## например {user_choise:1, deal_id: 11, User_input:'измененыый текст дела', deadline: 'not_changed', status: 1}
-                                                      ## либо можем вообще убрать атрибут user_choise и передавать словарь с deal_id = -1, если новое дело, либо
-                                                      ## укываем конкретный id и заменяем в базе полностью словарь с этим id
-                
-                change_action (user_answer) # функцию дописал в controller ниже, в которой формируем запрос для data_base.change
+                deal_id = interface.change_deal()
+                one_deal = data_base.get_one_deal(deal_id)
+                result = interface.change_deal(one_deal)
+                if result['status'] == 10:
+                    data_base.delete_deal(result['deal_id'])
+                else:
+                    data_base.change_deal(result)
             
             case '5': # Выход
                 interface.bye_mess() # прошу дописать функцию bye в interface (прощание с юзером)
