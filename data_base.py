@@ -71,7 +71,7 @@ def clear_db(path_to_db): # Очистка базы данных
 
 if __name__ == "__main__":
 #Тестирование БД на тестовых данных test_data
-     clear_db(path_to_db)
+    clear_db(path_to_db)
     # from pprint import pprint
     # path_to_db = 'test_db.json'  
     # test_data = [{"id_counter": 5}, 
