@@ -52,14 +52,3 @@ def run():
             case _:
                 interface.error_input() # прошу дописать функцию error_input в interface, которая выведет сообщение что-то вроде "Введены некорректные данные"
 
-
-def change_action(user_answer: dict):
-    match user_answer['user_choise']:
-        case 1: # завершить дело
-            return
-        
-        case 2: # изменить дело
-            return
-
-        case 3: # удалить дело
-            return
