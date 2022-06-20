@@ -37,7 +37,6 @@ def add_deal(deal_new):  # Добавление нового дела в БД {'
         data.append(deal_new)     # Добавляем в список словарей новое дело   
     with open(path_to_db, 'w', encoding='UTF-8') as file: # Записываем в базу данных обновленный список словарей
         json.dump(data, file, indent=4)
-    #return data
 
 def change_deal(deal_edit):  # Изменение дела 
     with open(path_to_db, 'r', encoding='UTF-8') as file: # Читаем данные из базы. 
@@ -49,7 +48,6 @@ def change_deal(deal_edit):  # Изменение дела
         
     with open(path_to_db, 'w', encoding='UTF-8') as file: # Записываем в базу данных обновленный список словарей
         json.dump(data, file, indent=4)    
-    #return data
 
 def delete_deal(deal_id_delete): # Удаление дела в БД по его deal_id
     with open(path_to_db, 'r', encoding='UTF-8') as file: # Читаем данные из базы. 
@@ -65,7 +63,6 @@ def delete_deal(deal_id_delete): # Удаление дела в БД по его
         data[0]['id_counter'] -= 1 # Уменьшаем id_counter на 1
     with open(path_to_db, 'w', encoding='UTF-8') as file: # Записываем в базу данных обновленный список словарей
         json.dump(data, file, indent=4)    
-    #return data
 
 def clear_db(path_to_db): # Очистка базы данных
     first_element = [{'id_counter': 0}, ]
@@ -74,62 +71,62 @@ def clear_db(path_to_db): # Очистка базы данных
 
 if __name__ == "__main__":
 #Тестирование БД на тестовых данных test_data
-    from pprint import pprint
-    path_to_db = 'test_db.json'
-    clear_db(path_to_db)
-    test_data = [{"id_counter": 5}, 
-            {'deal_id': 1, 'deal': 'Помыть кота', 'deadline': '12.05.2022', 'status': 'выполнено'}, 
-            {'deal_id': 2, 'deal': 'Постирать', 'deadline': '12.07.2022', 'status': 'просрочено'},
-            {'deal_id': 3, 'deal': 'Лохматить бабушку', 'deadline': '20.07.2022', 'status': 'в работе'},
-            {'deal_id': 4, 'deal': 'Написать To-do list', 'deadline': '16.07.2022', 'status': 'не выполнено'},
-            {'deal_id': 5, 'deal': 'Съесть кактус', 'deadline': '', 'status': 'делать не буду'}]
+     clear_db(path_to_db)
+    # from pprint import pprint
+    # path_to_db = 'test_db.json'  
+    # test_data = [{"id_counter": 5}, 
+    #         {'deal_id': 1, 'deal': 'Помыть кота', 'deadline': '12.05.2022', 'status': 'выполнено'}, 
+    #         {'deal_id': 2, 'deal': 'Постирать', 'deadline': '12.07.2022', 'status': 'просрочено'},
+    #         {'deal_id': 3, 'deal': 'Лохматить бабушку', 'deadline': '20.07.2022', 'status': 'в работе'},
+    #         {'deal_id': 4, 'deal': 'Написать To-do list', 'deadline': '16.07.2022', 'status': 'не выполнено'},
+    #         {'deal_id': 5, 'deal': 'Съесть кактус', 'deadline': '', 'status': 'делать не буду'}]
 
-    with open (path_to_db, 'w') as test_file:
-        json.dump(test_data,test_file)
+    # with open (path_to_db, 'w') as test_file:
+    #     json.dump(test_data,test_file)
 
-    print('')
-    print('***get_all_deals()***')
-    pprint(get_all_deals(), sort_dicts=False)
+    # print('')
+    # print('***get_all_deals()***')
+    # pprint(get_all_deals(), sort_dicts=False)
 
-    print('')
-    print('***add_deal(test_deal_add)***')
-    test_deal_add = {'deal_id': '', 'deal': 'Найти клад', 'deadline': '', 'status': 'новое'}
-    print('***')
-    print(test_deal_add)    
-    print('***')    
-    add_deal(test_deal_add)
-    with open (path_to_db, 'r') as test_file:
-        text = json.load(test_file)
-        pprint(text, sort_dicts=False)
+    # print('')
+    # print('***add_deal(test_deal_add)***')
+    # test_deal_add = {'deal_id': '', 'deal': 'Найти клад', 'deadline': '', 'status': 'новое'}
+    # print('***')
+    # print(test_deal_add)    
+    # print('***')    
+    # add_deal(test_deal_add)
+    # with open (path_to_db, 'r') as test_file:
+    #     text = json.load(test_file)
+    #     pprint(text, sort_dicts=False)
 
-    print('')
-    print('***change_deal(test_deal_edit)***')
-    test_deal_edit = {'deal_id': 6, 'deal': 'Найти клад', 'deadline': '29.06.2022', 'status': 'в работе'}
-    change_deal(test_deal_edit)
-    with open (path_to_db, 'r') as test_file:
-        text = json.load(test_file)
-        pprint(text, sort_dicts=False)
+    # print('')
+    # print('***change_deal(test_deal_edit)***')
+    # test_deal_edit = {'deal_id': 6, 'deal': 'Найти клад', 'deadline': '29.06.2022', 'status': 'в работе'}
+    # change_deal(test_deal_edit)
+    # with open (path_to_db, 'r') as test_file:
+    #     text = json.load(test_file)
+    #     pprint(text, sort_dicts=False)
 
-    print('')
-    print('***get_one_deal(test_deal_id_get)***')
-    test_deal_id_get = 3
-    print(get_one_deal(test_deal_id_get))
+    # print('')
+    # print('***get_one_deal(test_deal_id_get)***')
+    # test_deal_id_get = 3
+    # print(get_one_deal(test_deal_id_get))
 
-    print('')
-    print('***delete_deal(deal_delete)***')
-    test_deal_id_delete = 5
-    print('***')
-    print(get_one_deal(test_deal_id_delete))
-    print('***')
-    delete_deal(test_deal_id_delete)
-    with open (path_to_db, 'r') as test_file:
-        text = json.load(test_file)
-        pprint(text, sort_dicts=False)
+    # print('')
+    # print('***delete_deal(deal_delete)***')
+    # test_deal_id_delete = 5
+    # print('***')
+    # print(get_one_deal(test_deal_id_delete))
+    # print('***')
+    # delete_deal(test_deal_id_delete)
+    # with open (path_to_db, 'r') as test_file:
+    #     text = json.load(test_file)
+    #     pprint(text, sort_dicts=False)
         
-    print('')
-    print('***get_status_deal(deal_status_get)***')
-    print('***')
-    deal_status_get = 'выполнено'
-    print(deal_status_get)
-    print('***')
-    pprint(get_status_deal(deal_status_get), sort_dicts=False)
+    # print('')
+    # print('***get_status_deal(deal_status_get)***')
+    # print('***')
+    # deal_status_get = 'выполнено'
+    # print(deal_status_get)
+    # print('***')
+    # pprint(get_status_deal(deal_status_get), sort_dicts=False)
